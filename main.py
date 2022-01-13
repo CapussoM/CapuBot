@@ -1,6 +1,5 @@
 import os
 from threading import Thread
-from replit import db
 import json
 import library
 import pandas as pd
@@ -10,10 +9,16 @@ import youtube_dl
 import file
 from discord.ext import commands
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+db = {}
 
 ############### RUBBISH ###############################################
 neversleep.awake("https://capubot.marcocapusso.repl.co", True)
-TOKEN = "ODg0ODc5Mjc2NTYwNzc3MjI3.YTe6Cw.60dze1UiGeygUnCiGtLGKqva2ck"
+TOKEN = os.getenv("TOKEN")
+print(TOKEN)
 GUILD = os.getenv('DISCORD_GUILD')
 
 # client = discord.Client()

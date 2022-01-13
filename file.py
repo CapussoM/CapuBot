@@ -9,14 +9,18 @@ from async_timeout import timeout
 from functools import partial
 import youtube_dl
 from youtube_dl import YoutubeDL
-from replit import db
+#from replit import db
 from discord import FFmpegPCMAudio
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 import spotify
 
+db = {}
 # Suppress noise about console usage from errors
 youtube_dl.utils.bug_reports_message = lambda: ''
-TOKEN = "ODg0ODc5Mjc2NTYwNzc3MjI3.YTe6Cw.60dze1UiGeygUnCiGtLGKqva2ck"
+TOKEN = os.getenv("TOKEN")
 
 ytdlopts = {
     'format': 'bestaudio/best',
