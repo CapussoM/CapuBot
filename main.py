@@ -14,7 +14,7 @@ import os
 db = {}
 
 ############### RUBBISH ###############################################
-# neversleep.awake("https://capubot.marcocapusso.repl.co", True)
+neversleep.awake("https://capubot.marcocapusso.repl.co", True)
 TOKEN = st.secrets["TOKEN"]
 print(TOKEN)
 GUILD = os.getenv('DISCORD_GUILD')
