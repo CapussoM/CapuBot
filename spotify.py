@@ -6,6 +6,7 @@ import streamlit as st
 
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+import asyncio
 
 SPOTIFY_ID = st.secrets["SPOTIFY_ID"]
 SPOTIFY_SECRET = st.secrets["SPOTIFY_SECRET"]
@@ -20,6 +21,9 @@ except:
 url_regex = re.compile(
     "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+")
 
+
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
 session = aiohttp.ClientSession(
     headers={'User-Agent': 'python-requests/2.20.0'})
 
