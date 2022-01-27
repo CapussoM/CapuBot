@@ -24,8 +24,7 @@ url_regex = re.compile(
 
 # loop = asyncio.new_event_loop()
 # asyncio.set_event_loop(loop)
-session = aiohttp.ClientSession(
-    headers={'User-Agent': 'python-requests/2.20.0'})
+session = aiohttp.ClientSession(headers={'User-Agent': 'python-requests/2.20.0'})
 
 
 def clean_sclink(track):
