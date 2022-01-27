@@ -11,16 +11,17 @@ import youtube_dl
 from youtube_dl import YoutubeDL
 #from replit import db
 from discord import FFmpegPCMAudio
-import os
-from dotenv import load_dotenv
+import streamlit as st
 
-load_dotenv()
+
 import spotify
 
 db = {}
+
+TOKEN = st.secrets["TOKEN"]
 # Suppress noise about console usage from errors
 youtube_dl.utils.bug_reports_message = lambda: ''
-TOKEN = os.getenv("TOKEN")
+
 
 ytdlopts = {
     'format': 'bestaudio/best',

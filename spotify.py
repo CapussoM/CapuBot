@@ -2,12 +2,13 @@ import aiohttp
 import re
 from bs4 import BeautifulSoup
 from enum import Enum
+import streamlit as st
 
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-SPOTIFY_ID = "cf478562d39e403caf35621c455e9862"
-SPOTIFY_SECRET = "9344f6243ae244f3b7684e88ec37dfe7"
+SPOTIFY_ID = st.secrets["SPOTIFY_ID"]
+SPOTIFY_SECRET = st.secrets["SPOTIFY_SECRET"]
 
 try:
     sp_api = spotipy.Spotify(auth_manager=SpotifyClientCredentials(

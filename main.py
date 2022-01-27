@@ -8,16 +8,14 @@ import discord
 import youtube_dl
 import file
 from discord.ext import commands
-
-from dotenv import load_dotenv
-
-load_dotenv()
+import streamlit as st
+import os
 
 db = {}
 
 ############### RUBBISH ###############################################
-neversleep.awake("https://capubot.marcocapusso.repl.co", True)
-TOKEN = os.getenv("TOKEN")
+# neversleep.awake("https://capubot.marcocapusso.repl.co", True)
+TOKEN = st.secrets["TOKEN"]
 print(TOKEN)
 GUILD = os.getenv('DISCORD_GUILD')
 
