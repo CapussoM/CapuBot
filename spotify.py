@@ -6,7 +6,6 @@ import streamlit as st
 
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-import asyncio
 
 SPOTIFY_ID = st.secrets["SPOTIFY_ID"]
 SPOTIFY_SECRET = st.secrets["SPOTIFY_SECRET"]
@@ -24,7 +23,7 @@ url_regex = re.compile(
 
 # loop = asyncio.new_event_loop()
 # asyncio.set_event_loop(loop)
-session = aiohttp.ClientSession(headers={'User-Agent': 'python-requests/2.20.0'})
+# session = aiohttp.ClientSession(headers={'User-Agent': 'python-requests/2.20.0'})
 
 
 def clean_sclink(track):
@@ -55,78 +54,78 @@ async def convert_spotify(url):
 
 async def get_spotify_playlist(url):
     """Return Spotify_Playlist class"""
+    return []
+    # code = url.split('/')[4].split('?')[0]
+    # if api == True:
 
-    code = url.split('/')[4].split('?')[0]
-    if api == True:
+    #     if "open.spotify.com/album" in url:
+    #         try:
+    #             results = sp_api.album_tracks(code)
+    #             tracks = results['items']
 
-        if "open.spotify.com/album" in url:
-            try:
-                results = sp_api.album_tracks(code)
-                tracks = results['items']
+    #             while results['next']:
+    #                 results = sp_api.next(results)
+    #                 tracks.extend(results['items'])
 
-                while results['next']:
-                    results = sp_api.next(results)
-                    tracks.extend(results['items'])
+    #             links = []
 
-                links = []
+    #             for track in tracks:
+    #                 try:
+    #                     links.append(track['external_urls']['spotify'])
+    #                 except:
+    #                     pass
+    #             return links
+    #         except:
+    #             if SPOTIFY_ID != "" or SPOTIFY_SECRET != "":
+    #                 print("ERROR: Check spotify CLIENT_ID and SECRET")
 
-                for track in tracks:
-                    try:
-                        links.append(track['external_urls']['spotify'])
-                    except:
-                        pass
-                return links
-            except:
-                if SPOTIFY_ID != "" or SPOTIFY_SECRET != "":
-                    print("ERROR: Check spotify CLIENT_ID and SECRET")
+    #     if "open.spotify.com/playlist" in url:
+    #         try:
+    #             results = sp_api.playlist_items(code)
+    #             tracks = results['items']
+    #             while results['next']:
+    #                 results = sp_api.next(results)
+    #                 tracks.extend(results['items'])
 
-        if "open.spotify.com/playlist" in url:
-            try:
-                results = sp_api.playlist_items(code)
-                tracks = results['items']
-                while results['next']:
-                    results = sp_api.next(results)
-                    tracks.extend(results['items'])
+    #             links = []
 
-                links = []
+    #             for track in tracks:
+    #                 try:
+    #                   async with session.get(track['track']['external_urls']['spotify']) as response:
+    #                     page = await response.text()
 
-                for track in tracks:
-                    try:
-                      async with session.get(track['track']['external_urls']['spotify']) as response:
-                        page = await response.text()
-
-                      newlink = page.split("<title>")[1].split("</title>")[0].split("|")[0]
+    #                   newlink = page.split("<title>")[1].split("</title>")[0].split("|")[0]
                       
-                      newlink = newlink.replace("&#039;","'")
-                      newlink = newlink.replace("&amp;","'")
+    #                   newlink = newlink.replace("&#039;","'")
+    #                   newlink = newlink.replace("&amp;","'")
                       
-                      # print(newlink)
-                      links.append(newlink)
-                    except:
-                        pass
+    #                   # print(newlink)
+    #                   links.append(newlink)
+    #                 except:
+    #                     pass
                 
-                return links
+    #             return links
 
-            except:
-                if SPOTIFY_ID != "" or SPOTIFY_SECRET != "":
-                    print("ERROR: Check spotify CLIENT_ID and SECRET")
+    #         except:
+    #             if SPOTIFY_ID != "" or SPOTIFY_SECRET != "":
+    #                 print("ERROR: Check spotify CLIENT_ID and SECRET")
 
-    async with session.get(url) as response:
-         page = await response.text()
+    # async with session.get(url) as response:
+    #      page = await response.text()
 
-    soup = BeautifulSoup(page, 'html.parser')
+    # soup = BeautifulSoup(page, 'html.parser')
 
-    results = soup.find_all(property="music:song", attrs={"content": True})
-    links = []
+    # results = soup.find_all(property="music:song", attrs={"content": True})
+    # links = []
 
-    for item in results:
-        print(item)
-        links.append(item['content'])
+    # for item in results:
+    #     print(item)
+    #     links.append(item['content'])
 
-    title = soup.find('title')
-    title = title.string
+    # title = soup.find('title')
+    # title = title.string
 
-    return links
+    # return links
 
 
 def get_url(content):
